@@ -15,6 +15,8 @@ TODO:           # Knock sound
                 # Logging
                 # Tag if request message has link
                 # Manual tags
+                # Check guild
+                # Change logic to use command function
 =====================================================================
 """
 
