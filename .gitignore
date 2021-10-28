@@ -169,6 +169,7 @@ timeit.py
 *.logs
 
 # Other files
+# Docker test file
 /tagbot-docker
 
 # vscode
