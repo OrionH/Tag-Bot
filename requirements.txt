@@ -1,5 +1,9 @@
 discord.py==1.7.3
-nltk
-bs4
-lxml
-cchardet
+nltk==3.6.2
+beautifulsoup4==4.9.3
+lxml==4.6.3
+cchardet==2.1.7
+requests==2.25.1
+regex==2021.10.8
+
+

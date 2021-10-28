@@ -165,7 +165,11 @@ test.py
 timeit.py
 
 # logs
+/logs
 *.logs
+
+# Other files
+/tagbot-docker
 
 # vscode
 .vscode/*

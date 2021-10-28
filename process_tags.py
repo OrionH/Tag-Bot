@@ -15,6 +15,9 @@ import nltk
 # Used by BeautifulSoup to speed up parsing
 import cchardet
 
+#Download required packages for processing
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
 
 def scrape(url: str, header: dict) -> list:
     """Function to scrape the title and entire text of a web page.
