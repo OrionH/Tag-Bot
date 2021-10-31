@@ -1,5 +1,5 @@
 # Tag Bot
-This bot tags discord posts that contain links with keywords on the webpage.
+This discord bot tags messages that contain links with keywords on the webpage to increase searchability of old topics.
 
 ## Manually adding a Discord bot to your server
 Visit the [Discord Developers page](https://discord.com/developers), select your server, and create a new application.
@@ -7,14 +7,16 @@ Visit the [Discord Developers page](https://discord.com/developers), select your
 On the application's settings, go to the bot page and add a new bot. If your name is too similar to other bots such as "test bot", you will be rejected and have to change the name.
 
 Once the bot is created, set "**Send Messages**" and "**Manage Messages**" in the permissions. The permissions integer is 10240.
+![Permissions](/images/permissions.jpg)
 
 You can find your token by the bot icon. Click the reveal button or copy it with the button. The Tag Bot can now be linked to your server. See the sections below to start the bot.
+![Token](/images/token.jpg)
 
 # Running the bot
 The bot can be run manually or from a Docker container.
 
 ## Docker
-### Requirements
+### Requirements:
 - [Docker](https://www.docker.com/get-started)
 - [Discord API token](https://discord.com/developers)
 
@@ -31,7 +33,7 @@ docker run --name Tagbot -d -e BOT_API_TOKEN=YourTokenHere orionhumphrey/tagbot-
 You should now see the bot in your server. See Usage section below to get started with Tag Bot.
 
 ## Manual
-### Requirements
+### Requirements:
 - [Python 3](https://www.python.org/downloads/)
 - Pip (Comes with Python)
 - [Discord API token](https://discord.com/developers)
@@ -40,7 +42,7 @@ Navigate to program directory in a terminal and run the below command to install
 ```
 pip install -r requirements.txt
 ```
-### Adding your token to the environment
+### Adding your token to the environment:
 The bot can automatically pull the API token from the computers environment variables or from a .env file.
 
 Set variable name to **BOT_API_TOKEN**, and set variable value to **YourTokenHere**.
@@ -52,7 +54,7 @@ Here are resources for manually setting environment variables:
 
 The program can also pull a variable from a .env file in the program directory.
 
-In the program directory, create a file with no name and the extension as .env. Inside, set **BOT_API_TOKEN=YourTokenHere**.
+In the program directory, create a file with no name and the extension as .env. Inside, write: `BOT_API_TOKEN=YourTokenHere`
 
 To start the bot, navigate to the program directory in a terminal and run:
 ```
@@ -63,13 +65,16 @@ You should now see the bot in your server. Closing the terminal will shutdown th
 
 ## Usage
 
-
-Reply to a message that contains a link with !tag to generated tags for that webpage.
-
+### Proper use:
+Reply to a message that contains a link with !tag to generated tags for that webpage. See the below example.
+![Example1](/images/example1.jpg)
+### Improper use:
 The command must be used in a reply.
 
 The message replied to must contain a link.
 
+![Example2](/images/example2.jpg)
+
 ### Logs
 Log handling can be edited in the code.
-There are two log handlers. One for logging to a file and one for logging to stdout. You will not see stdout logs if running  Logs will be stored in bot.log in the program directory.
+There are two log handlers. One for logging to a file and one for logging to stdout. You will not see stdout logs if running in the background. Logs will be stored in bot.log in the program directory.

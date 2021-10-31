@@ -1,6 +1,7 @@
+#!/usr/bin/env python
 """
 =====================================================================
-Name:           Orion Humphrey
+@author:           Orion Humphrey
 Project:     	Discord Tag Bot
 Date:           Sept 9, 2021
 Version:        2

@@ -171,6 +171,8 @@ timeit.py
 # Other files
 # Docker test file
 /tagbot-docker
+/tagbot-v1
+tagbot-v1.zip
 
 # vscode
 .vscode/*
