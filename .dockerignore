@@ -17,3 +17,4 @@ __pycache__/
 __init__.py
 /images
 README.md
+.env
