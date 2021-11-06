@@ -1,0 +1,19 @@
+#Secrets
+api_token.py
+
+# Logs
+/Logs
+
+#Old files
+/Old
+
+#Tests
+/tests
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+#Other
+__init__.py
+/images
+README.md

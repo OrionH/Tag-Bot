@@ -19,7 +19,13 @@ import cchardet
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 
-def scrape(url: str, header: dict) -> list:
+def get_webpage(url: str, header: dict):
+    # Get response object of webpage
+    response = requests.get(url, headers=header)
+    return response
+
+
+def scrape(response) -> list:
     """Function to scrape the title and entire text of a web page.
 
     Args:
@@ -29,8 +35,6 @@ def scrape(url: str, header: dict) -> list:
     Returns:
         list: Returns strings of the scraped title and text.
     """
-    # Get response object of webpage
-    response = requests.get(url, headers=header)
     # Scrape webpage with lxml parser because it is often the fastest parser
     scrapedContent = BeautifulSoup(response.content, 'lxml')
     # Get string of first head > title on page
@@ -141,8 +145,10 @@ def create_tags(url: str, header: dict) -> str:
     Returns:
         str: Formatted string of keywords or tags
     """
+    # Get response object of webpage
+    response = get_webpage(url, header)
     # Get title and text body
-    content = scrape(url, header)
+    content = scrape(response)
     # Title
     title_tags = sort_title(process_words(content[0]))
     # Text

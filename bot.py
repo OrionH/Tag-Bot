@@ -1,6 +1,7 @@
+#!/usr/bin/env python
 """
 =====================================================================
-Name:           Orion Humphrey
+@author:           Orion Humphrey
 Project:     	Discord Tag Bot
 Date:           Sept 9, 2021
 Version:        2
@@ -18,18 +19,20 @@ import discord
 from process_tags import create_tags
 from discord.ext import commands
 import sys
+import asyncio
 
 from api_token import BOT_API_TOKEN
 
 # Global
 # Random header to prevent pages from blocking scraping
-user_agent_list = []
 header = {
     'User-Agent': 'Mozilla/5.0 (Macintosh;U;PPC Mac OS X 10_4_11;ja-jp) Apple\
     WebKit/533.19.4 (KHTML	like Gecko) Version/4.1.3 Safari/533.19.4'}
 
-# Create log folder
-os.mkdir('logs')
+ # Create log folder
+if not os.path.exists('logs'):
+    os.mkdir('logs')
+
 # Enable Logging
 logger = logging.getLogger('bot')
 logger.setLevel(logging.DEBUG)
@@ -44,7 +47,7 @@ handler2.setFormatter(logging.Formatter(
     '%(levelname)s: %(asctime)s %(message)s', datefmt='%m/%d/%Y %H:%M:%S'))
 logger.addHandler(handler2)
 
-#Create bot object
+#Create bot object with a specified command prefix
 bot = commands.Bot(command_prefix = '!', case_insensitive = True, strip_after_prefix = True)
 #Default help command removed in replace of a custom help command
 bot.remove_command('help')
@@ -69,7 +72,7 @@ async def help(ctx) -> None:
         url = 'https://github.com/OrionH/Tag-Bot'
     )
     embed.set_thumbnail(url='https://i.imgur.com/LjD6elk.png')
-    embed.set_image(url='https://i.imgur.com/pcboQuk.jpg')
+    embed.set_image(url='https://i.imgur.com/rvvIBxi.png')
 
     embed.add_field(
         name='!help',
@@ -125,5 +128,7 @@ async def tag(ctx, *args) -> None:
 
 
 
-#Start bot
-bot.run(os.environ["BOT_API_TOKEN"] or BOT_API_TOKEN)
+if __name__ == '__main__':
+    #Start bot
+    bot.run(os.environ["BOT_API_TOKEN"] or BOT_API_TOKEN)
+
