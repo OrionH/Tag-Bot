@@ -2,19 +2,20 @@
 api_token.py
 
 # Logs
-/Logs
+Logs
 
 #Old files
-/Old
+Old
 
 #Tests
-/tests
+tests
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 
 #Other
 __init__.py
-/images
+images
 README.md
 .env
+.dccache

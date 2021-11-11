@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 """
 =====================================================================
-@author:           Orion Humphrey
+@author:        Orion Humphrey
 Project:     	Discord Tag Bot
-Date:           Sept 9, 2021
+Date:           Nov 11, 2021
 Version:        2
 Description:    Discord bot to scrape a webpage from a URL in a
                 message an provide keyword tags for the link
@@ -22,12 +22,6 @@ import sys
 import asyncio
 
 from api_token import BOT_API_TOKEN
-
-# Global
-# Random header to prevent pages from blocking scraping
-header = {
-    'User-Agent': 'Mozilla/5.0 (Macintosh;U;PPC Mac OS X 10_4_11;ja-jp) Apple\
-    WebKit/533.19.4 (KHTML	like Gecko) Version/4.1.3 Safari/533.19.4'}
 
  # Create log folder
 if not os.path.exists('logs'):

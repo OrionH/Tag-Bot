@@ -39,6 +39,12 @@ To start the bot for the first time, run:
 docker run --name Tagbot -d -e BOT_API_TOKEN=YourTokenHere orionhumphrey/tagbot-slim
 ```
 
+When running the bot a second time, just run:
+
+```text
+docker start Tagbot
+```
+
 You should now see the bot in your server. See Usage section below to get started with Tag Bot.
 
 ## Manual

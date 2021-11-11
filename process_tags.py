@@ -1,8 +1,8 @@
 """
 =====================================================================
-Name:           Orion Humphrey
+@author:        Orion Humphrey
 Project:     	Discord Tag Bot
-Date:           Sept 9, 2021
+Date:           Nov 11, 2021
 Version:        1
 Description:    Methods to process keyword tags for the Discord bot.
 Notes:
@@ -14,14 +14,15 @@ from bs4 import BeautifulSoup
 import nltk
 # Used by BeautifulSoup to speed up parsing
 import cchardet
+from headers import random_header
 
 #Download required packages for processing
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 
 def get_webpage(url: str, header: dict):
-    # Get response object of webpage
-    response = requests.get(url, headers=header)
+    
+    response = requests.get(url, headers=random_header())
     return response
 
 
