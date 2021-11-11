@@ -14,15 +14,24 @@ from bs4 import BeautifulSoup
 import nltk
 # Used by BeautifulSoup to speed up parsing
 import cchardet
-from headers import random_header
+from headers import rotate_header
 
-#Download required packages for processing
+
+# Download required packages for processing
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 
-def get_webpage(url: str, header: dict):
-    
-    response = requests.get(url, headers=random_header())
+
+def get_webpage(url: str):
+    """Function to get response object from webpage.
+
+    Args:
+        url (str): URL to get response from
+
+    Returns:
+        [response]: Response object from webpage
+    """
+    response = requests.get(url, headers=rotate_header())
     return response
 
 
@@ -37,11 +46,11 @@ def scrape(response) -> list:
         list: Returns strings of the scraped title and text.
     """
     # Scrape webpage with lxml parser because it is often the fastest parser
-    scrapedContent = BeautifulSoup(response.content, 'lxml')
+    scraped_content = BeautifulSoup(response.content, 'lxml')
     # Get string of first head > title on page
-    title = scrapedContent.find('head').find('title').get_text()
+    title = scraped_content.find('head').find('title').get_text()
     # Get text from entire webpage
-    text = scrapedContent.get_text()
+    text = scraped_content.get_text()
 
     return [title, text]
 
@@ -59,22 +68,22 @@ def count_occurrences(word_list: list) -> list:
         list: Final tags (strings).
     """
     # Create dictionary of words with the default value of 0
-    wordDict = {word_list[0]: 0 for word_list in word_list}
+    word_dict = {word_list[0]: 0 for word_list in word_list}
     # If there is more than one occurrence of a word, add 1 to the value
     for i in word_list:
-        if i[0] in wordDict:
-            wordDict[i[0]] += 1
+        if i[0] in word_dict:
+            word_dict[i[0]] += 1
 
     # NOTE Use for seeing number of word occurrences
-    # print(sorted(wordDict.items(), key=lambda x: x[1], reverse=True))
+    # print(sorted(word_dict.items(), key=lambda x: x[1], reverse=True))
 
     # Delete any keys that don't have a value greater than 2.
     # This reduces the tags to important ones
-    for key, val in list(wordDict.items()):
+    for key, val in list(word_dict.items()):
         if val <= 2:
-            del wordDict[key]
+            del word_dict[key]
     # Generate list from dictionary of words sorted from most occurrences to least
-    tags = sorted(wordDict, key=wordDict.get, reverse=True)
+    tags = sorted(word_dict, key=word_dict.get, reverse=True)
 
     # Return 7 tags
     return tags[:7]
@@ -95,11 +104,11 @@ def sort_title(words: list) -> list:
     order = ['NNPS', 'NNP', 'NNS', 'NN', 'JJS']
     # Sort list of words by the oder list.
     # This is to put more relevant tags (IMO) in the beginning of the list.
-    sortedTags = sorted(words, key=lambda i: order.index(i[1]))
+    sorted_tags = sorted(words, key=lambda i: order.index(i[1]))
     # Remove pos tags
-    sortedWords = [word[0] for word in sortedTags]
+    sorted_words = [word[0] for word in sorted_tags]
     # Only return 3 title tags
-    return sortedWords[:3]
+    return sorted_words[:3]
 
 
 def process_words(words: str) -> list:
@@ -115,7 +124,7 @@ def process_words(words: str) -> list:
     """
     # list of NLTK parts of speech for creating tags.
     # NN noun, singular 'desk', NNS noun plural 'desks', NNP proper noun,
-    # singular 'Harrison', NNPS proper noun, plural 'Americans', JJS adjective, superlative 'biggest'
+    # singular 'Harrison', NNPS proper noun, plural 'dogs', JJS adjective, superlative 'biggest'
     pos = ['NN', 'NNS', 'NNP', 'NNPS', 'JJS']
 
     # Tokenize text
@@ -133,7 +142,7 @@ def process_words(words: str) -> list:
     return reduced_tagged_list
 
 
-def create_tags(url: str, header: dict) -> str:
+def create_tags(url: str) -> str:
     """Function to process a web page into keywords from that page. Keyword
     tags are sorted by importance. Up to three tags from the title of the page in
     propper noun, noun, adjective order. Up to seven tags from the entire page in
@@ -141,13 +150,12 @@ def create_tags(url: str, header: dict) -> str:
 
     Args:
         url (str): URL to scrape
-        header (str): User agent information
 
     Returns:
         str: Formatted string of keywords or tags
     """
     # Get response object of webpage
-    response = get_webpage(url, header)
+    response = get_webpage(url)
     # Get title and text body
     content = scrape(response)
     # Title
