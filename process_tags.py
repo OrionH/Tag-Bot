@@ -9,30 +9,16 @@ Notes:
 =====================================================================
 """
 
-import requests
 from bs4 import BeautifulSoup
 import nltk
 # Used by BeautifulSoup to speed up parsing
 import cchardet
-from headers import rotate_header
+
 
 
 # Download required packages for processing
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
-
-
-def get_webpage(url: str):
-    """Function to get response object from webpage.
-
-    Args:
-        url (str): URL to get response from
-
-    Returns:
-        [response]: Response object from webpage
-    """
-    response = requests.get(url, headers=rotate_header())
-    return response
 
 
 def scrape(response) -> list:
@@ -142,20 +128,15 @@ def process_words(words: str) -> list:
     return reduced_tagged_list
 
 
-def create_tags(url: str) -> str:
+def create_tags() -> str:
     """Function to process a web page into keywords from that page. Keyword
     tags are sorted by importance. Up to three tags from the title of the page in
     propper noun, noun, adjective order. Up to seven tags from the entire page in
     most frequent to least frequent order.
 
-    Args:
-        url (str): URL to scrape
-
     Returns:
         str: Formatted string of keywords or tags
     """
-    # Get response object of webpage
-    response = get_webpage(url)
     # Get title and text body
     content = scrape(response)
     # Title

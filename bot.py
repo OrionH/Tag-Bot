@@ -7,8 +7,7 @@ Date:           Nov 11, 2021
 Version:        2
 Description:    Discord bot to scrape a webpage from a URL in a
                 message an provide keyword tags for the link
-Notes:          This was partially made to show I know python at a
-                certain date.
+Notes:
 =====================================================================
 """
 
@@ -17,8 +16,10 @@ import logging
 import os
 import sys
 import discord
+import requests
 from discord.ext import commands
 from process_tags import create_tags
+from headers import rotate_header
 from api_token import BOT_API_TOKEN
 
 # Create log folder
@@ -45,6 +46,47 @@ bot = commands.Bot(command_prefix='!', case_insensitive=True,
                    strip_after_prefix=True)
 # Default help command removed in replace of a custom help command
 bot.remove_command('help')
+
+
+async def get_webpage(ctx, url: str):
+    """Function to get response object from webpage.
+
+    Args:
+        ctx (Context): The message that invoked this function.
+        url (str): URL to get response from
+
+    Returns:
+        [response]: Response object from webpage
+    """
+    try:
+        response = requests.get(url, headers=rotate_header(), timeout=5)
+        response.raise_for_status()
+        return response
+
+    except requests.exceptions.HTTPError as err_HTTP:
+        await ctx.message.channel.send('HTTP Error. See logs for details.')
+        logger.error(f'HTTP Error: {err_HTTP}')
+        raise
+
+    except requests.exceptions.ConnectionError as err_connection:
+        await ctx.message.channel.send('Connection Error. See logs for details.')
+        logger.error(f'Error Connecting: {err_connection} : {url}')
+        raise
+
+    except requests.exceptions.Timeout as err_timeout:
+        await ctx.message.channel.send('Timeout Error. See logs for details.')
+        logger.error(f'Timeout Error: {err_timeout} : {url}')
+        raise
+
+    except requests.exceptions.RequestException as err_request_exception:
+        await ctx.message.channel.send('Request Error. See logs for details.')
+        logger.error(
+            f'A request exception has occurred: {err_request_exception} : {url}')
+        raise
+
+    except Exception as err:
+        await ctx.message.channel.send('An error has occurred. See logs for details.')
+        logger.error(f'Error getting webpage: {err}')
 
 
 @bot.event
@@ -86,8 +128,7 @@ async def help(ctx) -> None:
 
 @bot.command()
 async def tag(ctx) -> None:
-    """Function to generate keyword tags from a link in a message. Function
-#     looks for the !tag command
+    """Function to generate keyword tags from a link in a message. Function looks for the !tag command
 
     Args:
         ctx (Context): The message that invoked this function.
@@ -103,8 +144,17 @@ async def tag(ctx) -> None:
         # an if statement.
         try:
             url = url_mo.group()
-            # Create tags
-            tags = create_tags(url)
+
+            try:
+                # Get response object of webpage
+                response = await get_webpage(ctx, url)
+            except Exception:
+                # Skip rest of function if error in retrieving page
+                return
+
+            # Create tags from webpage
+            tags = create_tags()
+
             # Reply to tag request
             try:
                 await ctx.message.reply(content='Here are your tags:\n' + tags)

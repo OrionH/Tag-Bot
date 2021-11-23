@@ -172,6 +172,7 @@ timeit.py
 .dccache
 /Old
 api_token.py
+.pylintrc
 
 # vscode
 .vscode/*
