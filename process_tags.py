@@ -15,7 +15,6 @@ import nltk
 import cchardet
 
 
-
 # Download required packages for processing
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
@@ -48,7 +47,8 @@ def count_occurrences(word_list: list) -> list:
     with a minimum of zero and a maximum of seven.
 
     Args:
-        word_list (list): Takes in list of tuples (str,str). Words tagged with parts of speech.
+        word_list (list): Takes in list of tuples (str,str). Words tagged with
+                          parts of speech.
 
     Returns:
         list: Final tags (strings).
@@ -82,7 +82,8 @@ def sort_title(words: list) -> list:
     words returned can range from a minimum of zero to a maximum of three.
 
     Args:
-        words (list): Takes in list of tuples (str,str). Words tagged with parts of speech.
+        words (list): Takes in list of tuples (str,str). Words tagged with
+                      parts of speech.
 
     Returns:
         list: Final tags (strings).
@@ -130,9 +131,9 @@ def process_words(words: str) -> list:
 
 def create_tags() -> str:
     """Function to process a web page into keywords from that page. Keyword
-    tags are sorted by importance. Up to three tags from the title of the page in
-    propper noun, noun, adjective order. Up to seven tags from the entire page in
-    most frequent to least frequent order.
+    tags are sorted by importance. Up to three tags from the title of the page
+    in propper noun, noun, adjective order. Up to seven tags from the entire
+    page in most frequent to least frequent order.
 
     Returns:
         str: Formatted string of keywords or tags
