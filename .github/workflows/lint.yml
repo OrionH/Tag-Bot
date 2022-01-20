@@ -62,10 +62,10 @@ name: Lint Code Base
 #############################
 on:
   push:
-    branches: [ master ]
+    branches: [ master, workflow-test ]
     # Remove the line above to run when pushing to master
-  #pull_request:
-    #branches: [master, main]
+  pull_request:
+    branches: [master, workflow-test]
 
 ###############
 # Set the Job #
@@ -105,3 +105,6 @@ jobs:
           # VALIDATE_PYTHON_PYLINT: true
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Test with pytest
+      run:  pytest

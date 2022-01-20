@@ -2,10 +2,9 @@ on:
   # Trigger analysis when pushing in master or pull requests, and when creating
   # a pull request.
   push:
-    branches:
-      - master
-  # pull_request:
-    #   types: [opened, synchronize, reopened]
+    branches: [ master, workflow-test ]
+  pull_request:
+    branches: [ master, workflow-test ]
 name: Sonarcloud
 jobs:
   sonarcloud:
