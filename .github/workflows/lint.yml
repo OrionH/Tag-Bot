@@ -63,9 +63,8 @@ name: Lint Code Base
 on:
   push:
     branches: [ master, workflow-test ]
-    # Remove the line above to run when pushing to master
-    pull_request:
-      branches: [master, workflow-test]
+  pull_request:
+    branches: [ master, workflow-test ]
 
 ###############
 # Set the Job #
