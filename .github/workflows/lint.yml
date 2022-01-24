@@ -4,7 +4,7 @@
 ## Super Linter GitHub Actions ##
 #################################
 #################################
-name: Build/Test
+name: Lint
 
 #
 # Documentation:
@@ -49,7 +49,9 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter/slim@v4
         env:
+          FILTER_REGEX_EXCLUDE: headers.py
           # VALIDATE_ALL_CODEBASE: true
+          VALIDATE_MARKDOWN: true
           VALIDATE_PYTHON: true
           VALIDATE_PYTHON_BLACK: true
           VALIDATE_PYTHON_FLAKE8: true
