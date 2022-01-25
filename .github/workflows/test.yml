@@ -1,0 +1,40 @@
+name: test
+on:
+  push:
+    branches:
+      [ 'master']
+  pull_request:
+    branches:
+      [ 'master']
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        # Run in all these versions of Python
+        python-version: [3.9]
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set Up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Display version
+        run: python -c "import sys; print(sys.version)"
+
+      - name: Install dependencies
+      #Installing pytest incase of removal from requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+          pip install -e .
+
+      - name: Test with pytest
+        run: pytest
+            

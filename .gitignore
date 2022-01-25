@@ -167,12 +167,15 @@ timeit.py
 # logs
 /logs
 *.logs
+super-linter.log
 
 # Other files
 .dccache
-/Old
+Old/
 api_token.py
 .pylintrc
+.mypy_cache/
+.pytest_cache/
 
 # vscode
 .vscode/*
