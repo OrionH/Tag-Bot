@@ -20,7 +20,11 @@ import requests
 from discord.ext import commands
 from process_tags import create_tags
 from headers import rotate_header
-from api_token import BOT_API_TOKEN
+from dotenv import load_dotenv
+from discord.errors import LoginFailure
+
+# Load .env files in folder if they exist
+load_dotenv()
 
 # Create log folder
 if not os.path.exists('logs'):
@@ -176,4 +180,9 @@ async def tag(ctx) -> None:
 
 if __name__ == '__main__':
     # Start bot
-    bot.run(os.environ["BOT_API_TOKEN"] or BOT_API_TOKEN)
+    try:
+        bot.run(os.environ["BOT_API_TOKEN"])
+    except KeyError:
+        logger.error('Cannot start bot. No Discord API token supplied. Check your environment variables.')
+    except LoginFailure as exception:
+        logger.error(f'{exception} Check your Discord API token.')
