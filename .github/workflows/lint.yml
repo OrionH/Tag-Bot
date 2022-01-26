@@ -52,6 +52,10 @@ jobs:
           FILTER_REGEX_EXCLUDE: headers.py
           # VALIDATE_ALL_CODEBASE: true
           VALIDATE_MARKDOWN: true
+          VALIDATE_YAML: true
+          VALIDATE_GITHUB_ACTIONS: true
+          VALIDATE_GITLEAKS: true
+          VALIDATE_DOCKERFILE_HADOLINT: true
           VALIDATE_PYTHON: true
           VALIDATE_PYTHON_BLACK: true
           VALIDATE_PYTHON_FLAKE8: true

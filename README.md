@@ -1,6 +1,6 @@
 # Tag Bot
 
-This discord bot tags messages that contain links with keywords on the webpage to increase searchability of old topics.
+This discord bot tags messages that contain links with keywords on the web page to increase searchability of old topics.
 
 ## Manually adding a Discord bot to your server
 
@@ -14,13 +14,13 @@ Once the bot is created, set "**Send Messages**" and "**Manage Messages**" in th
 You can find your token by the bot icon. Click the reveal button or copy it with the button. The Tag Bot can now be linked to your server. See the sections below to start the bot.
 ![Token](/images/token.jpg)
 
-# Running the bot
+## Running the bot
 
 The bot can be run manually or from a Docker container.
 
-## Docker
+### Docker Operation
 
-### Requirements:
+#### Docker Requirements
 
 - [Docker](https://www.docker.com/get-started)
 - [Discord API token](https://discord.com/developers)
@@ -47,9 +47,9 @@ docker start Tagbot
 
 You should now see the bot in your server. See Usage section below to get started with Tag Bot.
 
-## Manual
+### Manual Operation
 
-### Requirements:
+#### Manual Requirements
 
 - [Python 3](https://www.python.org/downloads/)
 - Pip (Comes with Python)
@@ -61,7 +61,7 @@ Navigate to program directory in a terminal and run the below command to install
 pip install -r requirements.txt
 ```
 
-### Adding your token to the environment:
+### Adding your token to the environment
 
 The bot can automatically pull the API token from the computers environment variables or from a .env file.
 
@@ -87,12 +87,12 @@ You should now see the bot in your server. Closing the terminal will shutdown th
 
 ## Usage
 
-### Proper use:
+### Proper use
 
-Reply to a message that contains a link with !tag to generated tags for that webpage. See the below example.
+Reply to a message that contains a link with !tag to generated tags for that web page. See the below example.
 ![Example1](/images/example1.jpg)
 
-### Improper use:
+### Improper use
 
 The command must be used in a reply.
 
@@ -100,7 +100,7 @@ The message replied to must contain a link.
 
 ![Example2](/images/example2.jpg)
 
-### Logs
+## Logs
 
 Log handling can be edited in the code.
 There are two log handlers. One for logging to a file and one for logging to stdout. You will not see stdout logs if using the Docker image in detached mode unless you use the Docker Desktop application. Logs will be stored in bot.log in the program directory and can be accessed via a volume or bind mount if using Docker.
