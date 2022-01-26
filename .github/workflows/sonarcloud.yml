@@ -1,11 +1,10 @@
-on:
-  # Trigger analysis when pushing in master or pull requests, and when creating
-  # a pull request.
-  push:
-    branches: [ master, workflow-test ]
-  pull_request:
-    branches: [ master, workflow-test ]
+---
 name: Sonarcloud
+on:
+  push:
+    branches: [master, workflow-test]
+  pull_request:
+    branches: [master, workflow-test]
 jobs:
   sonarcloud:
     runs-on: ubuntu-latest

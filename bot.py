@@ -11,17 +11,18 @@ Notes:
 =====================================================================
 """
 
-import re
 import logging
 import os
+import re
 import sys
 import discord
 import requests
-from discord.ext import commands
-from process_tags import create_tags
-from headers import rotate_header
-from dotenv import load_dotenv
 from discord.errors import LoginFailure
+from discord.ext import commands
+from dotenv import load_dotenv
+from headers import rotate_header
+from process_tags import create_tags
+
 
 # Load .env files in folder if they exist
 load_dotenv()
@@ -67,9 +68,9 @@ async def get_webpage(ctx, url: str):
         response.raise_for_status()
         return response
 
-    except requests.exceptions.HTTPError as err_HTTP:
+    except requests.exceptions.HTTPError as err_http:
         await ctx.message.channel.send('HTTP Error. See logs for details.')
-        logger.error(f'HTTP Error: {err_HTTP}')
+        logger.error(f'HTTP Error: {err_http}')
         raise
 
     except requests.exceptions.ConnectionError as err_connection:
@@ -157,7 +158,7 @@ async def tag(ctx) -> None:
                 return
 
             # Create tags from webpage
-            tags = create_tags()
+            tags = create_tags(response)
 
             # Reply to tag request
             try:
@@ -167,7 +168,7 @@ async def tag(ctx) -> None:
             except AttributeError as err:
                 logger.error(err)
                 await ctx.message.channel.send('An error occurred. Check the log for details.')
-        except AttributeError as err:
+        except AttributeError:
             await ctx.message.channel.send('To tag a message, it must contain a link to a webpage.')
             logger.info(
                 f'{ctx.message.author} made a tag request to a message without a link to a webpage.')

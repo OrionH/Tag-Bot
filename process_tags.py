@@ -9,10 +9,10 @@ Notes:
 =====================================================================
 """
 
-from bs4 import BeautifulSoup
-import nltk
 # Used by BeautifulSoup to speed up parsing
 import cchardet
+import nltk
+from bs4 import BeautifulSoup
 
 
 # Download required packages for processing
@@ -129,11 +129,14 @@ def process_words(words: str) -> list:
     return reduced_tagged_list
 
 
-def create_tags() -> str:
+def create_tags(response) -> str:
     """Function to process a web page into keywords from that page. Keyword
     tags are sorted by importance. Up to three tags from the title of the page
     in propper noun, noun, adjective order. Up to seven tags from the entire
     page in most frequent to least frequent order.
+
+    Args:
+        response: Response object from getting a webpage.
 
     Returns:
         str: Formatted string of keywords or tags
