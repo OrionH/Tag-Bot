@@ -28,29 +28,29 @@ from process_tags import create_tags
 load_dotenv()
 
 # Create log folder
-if not os.path.exists('logs'):
-    os.mkdir('logs')
+if not os.path.exists("logs"):
+    os.mkdir("logs")
 
 # Enable Logging
-logger = logging.getLogger('bot')
+logger = logging.getLogger("bot")
 logger.setLevel(logging.DEBUG)
 handler = logging.FileHandler(
-    filename='logs/bot.log', encoding='utf-8', mode='a')
+    filename="logs/bot.log", encoding="utf-8", mode="a")
 handler.setFormatter(logging.Formatter(
-    '%(levelname)s: %(asctime)s %(message)s', datefmt='%m/%d/%Y %H:%M:%S'))
+    "%(levelname)s: %(asctime)s %(message)s", datefmt="%m/%d/%Y %H:%M:%S"))
 logger.addHandler(handler)
 
 # Enable STDOUT Logging
 handler2 = logging.StreamHandler(sys.stdout)
 handler2.setFormatter(logging.Formatter(
-    '%(levelname)s: %(asctime)s %(message)s', datefmt='%m/%d/%Y %H:%M:%S'))
+    "%(levelname)s: %(asctime)s %(message)s", datefmt="%m/%d/%Y %H:%M:%S"))
 logger.addHandler(handler2)
 
 # Create bot object with a specified command prefix
-bot = commands.Bot(command_prefix='!', case_insensitive=True,
+bot = commands.Bot(command_prefix="!", case_insensitive=True,
                    strip_after_prefix=True)
 # Default help command removed in replace of a custom help command
-bot.remove_command('help')
+bot.remove_command("help")
 
 
 async def get_webpage(ctx, url: str):
@@ -69,29 +69,29 @@ async def get_webpage(ctx, url: str):
         return response
 
     except requests.exceptions.HTTPError as err_http:
-        await ctx.message.channel.send('HTTP Error. See logs for details.')
-        logger.error(f'HTTP Error: {err_http}')
+        await ctx.message.channel.send("HTTP Error. See logs for details.")
+        logger.error(f"HTTP Error: {err_http}")
         raise
 
     except requests.exceptions.ConnectionError as err_connection:
-        await ctx.message.channel.send('Connection Error. See logs for details.')
-        logger.error(f'Error Connecting: {err_connection} : {url}')
+        await ctx.message.channel.send("Connection Error. See logs for details.")
+        logger.error(f"Error Connecting: {err_connection} : {url}")
         raise
 
     except requests.exceptions.Timeout as err_timeout:
-        await ctx.message.channel.send('Timeout Error. See logs for details.')
-        logger.error(f'Timeout Error: {err_timeout} : {url}')
+        await ctx.message.channel.send("Timeout Error. See logs for details.")
+        logger.error(f"Timeout Error: {err_timeout} : {url}")
         raise
 
     except requests.exceptions.RequestException as err_request_exception:
-        await ctx.message.channel.send('Request Error. See logs for details.')
+        await ctx.message.channel.send("Request Error. See logs for details.")
         logger.error(
-            f'A request exception has occurred: {err_request_exception} : {url}')
+            f"A request exception has occurred: {err_request_exception} : {url}")
         raise
 
     except Exception as err:
-        await ctx.message.channel.send('An error has occurred. See logs for details.')
-        logger.error(f'Error getting webpage: {err}')
+        await ctx.message.channel.send("An error has occurred. See logs for details.")
+        logger.error(f"Error getting webpage: {err}")
 
 
 @bot.event
@@ -109,22 +109,22 @@ async def help(ctx) -> None:
         ctx (Context): The message that invoked this function.
     """
     embed = discord.Embed(
-        title='Bot Commands',
-        description='Use these commands to tag links with keywords.',
+        title="Bot Commands",
+        description="Use these commands to tag links with keywords.",
         color=discord.Color.gold(),
-        url='https://github.com/OrionH/Tag-Bot'
+        url="https://github.com/OrionH/Tag-Bot"
     )
-    embed.set_thumbnail(url='https://i.imgur.com/LjD6elk.png')
-    embed.set_image(url='https://i.imgur.com/rvvIBxi.png')
+    embed.set_thumbnail(url="https://i.imgur.com/LjD6elk.png")
+    embed.set_image(url="https://i.imgur.com/rvvIBxi.png")
 
     embed.add_field(
-        name='!help',
-        value='Shows this list of help commands',
+        name="!help",
+        value="Shows this list of help commands",
         inline=False,
     )
     embed.add_field(
-        name='!tag',
-        value='Reply to a message that contains a link with the !tag command to generate keywords for the webpage.',
+        name="!tag",
+        value="Reply to a message that contains a link with the !tag command to generate keywords for the webpage.",
         inline=False
     )
 
@@ -140,7 +140,7 @@ async def tag(ctx) -> None:
     """
     if ctx.message.reference:
         # Regex to pull a url out of the message replied to
-        url_regex = re.compile(r'http\S*')
+        url_regex = re.compile(r"http\S*")
         url_mo = url_regex.search(ctx.message.reference.resolved.content)
 
         # Check if a URL is in the ctx.message. Using a try/catch because as
@@ -162,28 +162,28 @@ async def tag(ctx) -> None:
 
             # Reply to tag request
             try:
-                await ctx.message.reply(content='Here are your tags:\n' + tags)
+                await ctx.message.reply(content="Here are your tags:\n" + tags)
                 logger.info(
-                    f'{ctx.message.author} made a successful tag request.')
+                    f"{ctx.message.author} made a successful tag request.")
             except AttributeError as err:
                 logger.error(err)
-                await ctx.message.channel.send('An error occurred. Check the log for details.')
+                await ctx.message.channel.send("An error occurred. Check the log for details.")
         except AttributeError:
-            await ctx.message.channel.send('To tag a message, it must contain a link to a webpage.')
+            await ctx.message.channel.send("To tag a message, it must contain a link to a webpage.")
             logger.info(
-                f'{ctx.message.author} made a tag request to a message without a link to a webpage.')
+                f"{ctx.message.author} made a tag request to a message without a link to a webpage.")
 
     else:
-        await ctx.message.channel.send('!tag must be called in a reply.')
+        await ctx.message.channel.send("!tag must be called in a reply.")
         logger.info(
-            f'{ctx.message.author} made a tag request outside of a reply.')
+            f"{ctx.message.author} made a tag request outside of a reply.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Start bot
     try:
         bot.run(os.environ["BOT_API_TOKEN"])
     except KeyError:
-        logger.error('Cannot start bot. No Discord API token supplied. Check your environment variables.')
+        logger.error("Cannot start bot. No Discord API token supplied. Check your environment variables.")
     except LoginFailure as exception:
-        logger.error(f'{exception} Check your Discord API token.')
+        logger.error(f"{exception} Check your Discord API token.")

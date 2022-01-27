@@ -9,8 +9,7 @@ Notes:
 =====================================================================
 """
 def test_always_passes():
-    """Temporary test method for testing workflows.
-    """
+    """Temporary test method for testing workflows."""
     assert True
 
 # def test_always_fails():
