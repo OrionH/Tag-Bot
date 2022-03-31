@@ -14,13 +14,13 @@ jobs:
       matrix:
         # Run in all these versions of Python
         python-version: [3.9]
-    
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set Up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
@@ -37,4 +37,3 @@ jobs:
 
       - name: Test with pytest
         run: pytest tests/test_*
-            

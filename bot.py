@@ -15,6 +15,7 @@ import logging
 import os
 import re
 import sys
+
 import discord
 import requests
 from discord.errors import LoginFailure
@@ -22,7 +23,6 @@ from discord.ext import commands
 from dotenv import load_dotenv
 from headers import rotate_header
 from process_tags import create_tags
-
 
 # Load .env files in folder if they exist
 load_dotenv()
@@ -89,10 +89,6 @@ async def get_webpage(ctx, url: str):
             f"A request exception has occurred: {err_request_exception} : {url}")
         raise
 
-    except Exception as err:
-        await ctx.message.channel.send("An error has occurred. See logs for details.")
-        logger.error(f"Error getting webpage: {err}")
-
 
 @bot.event
 async def on_ready():
@@ -153,7 +149,7 @@ async def tag(ctx) -> None:
             try:
                 # Get response object of webpage
                 response = await get_webpage(ctx, url)
-            except Exception:
+            except requests.exceptions:
                 # Skip rest of function if error in retrieving page
                 return
 

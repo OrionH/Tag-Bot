@@ -14,7 +14,6 @@ import cchardet
 import nltk
 from bs4 import BeautifulSoup
 
-
 # Download required packages for processing
 nltk.download("punkt")
 nltk.download("averaged_perceptron_tagger")
