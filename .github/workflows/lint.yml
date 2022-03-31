@@ -22,7 +22,7 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter/slim@v4
         env:
-          FILTER_REGEX_EXCLUDE: headers.py
+          FILTER_REGEX_EXCLUDE: headers.py|gitleaks.toml
           # VALIDATE_ALL_CODEBASE: true
           VALIDATE_MARKDOWN: true
           VALIDATE_YAML: true
