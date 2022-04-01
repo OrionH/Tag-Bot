@@ -111,7 +111,7 @@ async def help(ctx) -> None:
         url="https://github.com/OrionH/Tag-Bot"
     )
     embed.set_thumbnail(url="https://i.imgur.com/LjD6elk.png")
-    embed.set_image(url="https://i.imgur.com/rvvIBxi.png")
+    embed.set_image(url="https://raw.githubusercontent.com/OrionH/Tag-Bot/master/images/example1.jpg")
 
     embed.add_field(
         name="!help",
@@ -143,7 +143,7 @@ async def tag(ctx) -> None:
         # users learn how the command works, there will be a >50% chance
         # the message will contain a URL making this logic faster than
         # an if statement.
-        try:
+        if hasattr(url_mo, "group"):
             url = url_mo.group()
 
             try:
@@ -165,7 +165,7 @@ async def tag(ctx) -> None:
             except AttributeError as err:
                 logger.error(err)
                 await ctx.message.channel.send("An error occurred. Check the log for details.")
-        except AttributeError:
+        else:
             await ctx.message.channel.send("To tag a message, it must contain a link to a webpage.")
             logger.info(
                 f"{ctx.message.author} made a tag request to a message without a link to a webpage.")
