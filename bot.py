@@ -110,7 +110,7 @@ async def help(ctx) -> None:
         color=discord.Color.gold(),
         url="https://github.com/OrionH/Tag-Bot"
     )
-    embed.set_thumbnail(url="https://i.imgur.com/LjD6elk.png")
+    embed.set_thumbnail(url="https://raw.githubusercontent.com/OrionH/Tag-Bot/master/images/thumbnail.png")
     embed.set_image(url="https://raw.githubusercontent.com/OrionH/Tag-Bot/master/images/example1.jpg")
 
     embed.add_field(
