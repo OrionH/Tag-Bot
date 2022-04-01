@@ -18,6 +18,7 @@ import sys
 
 import discord
 import requests
+import urllib3.excpetions.HTTPError
 from discord.errors import LoginFailure
 from discord.ext import commands
 from dotenv import load_dotenv
