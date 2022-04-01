@@ -3,10 +3,10 @@ WORKDIR /usr/src/app
 COPY . .
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    g++ && \
+    g++=4:11.2.0-1 && \
     pip install --no-cache-dir -r requirements.txt
 
-FROM gcr.io/distroless/python3 AS runtime
+FROM gcr.io/distroless/python3:latest AS runtime
 WORKDIR /usr/src/app
 COPY --from=build /usr/local/lib/python3.9/site-packages/ /usr/local/lib/python3.9/dist-packages/
 COPY --from=build /usr/src/app /usr/src/app
