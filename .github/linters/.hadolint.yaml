@@ -5,5 +5,5 @@
 ignored:
 
 override:
-  warning:
+  info:
   - DL3007 # Latest tag warning
