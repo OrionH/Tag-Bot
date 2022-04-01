@@ -149,7 +149,8 @@ async def tag(ctx) -> None:
             try:
                 # Get response object of webpage
                 response = await get_webpage(ctx, url)
-            except requests.exceptions:
+            # Exception used by the requests module but inherits from BaseException
+            except urllib3.exceptions.HTTPError:
                 # Skip rest of function if error in retrieving page
                 return
 
