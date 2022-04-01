@@ -4,7 +4,7 @@ This discord bot tags messages that contain links with keywords on the web page 
 
 [![Super-Linter](https://github.com/OrionH/Tag-Bot/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
 [![Known Vulnerabilities](https://github.com/OrionH/Tag-Bot/workflows/Snyk%20Scan/badge.svg)](https://snyk.io/)
-![Tests](https://github.com/OrionH/Tag-Bot/workflows/Test/badge.svg)
+![Tests](https://github.com/OrionH/Tag-Bot/workflows/Tests/badge.svg)
 [![CodeQL](https://github.com/OrionH/Tag-Bot/workflows/CodeQL/badge.svg)](https://codeql.github.com/)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OrionH_Tag-Bot&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=OrionH_Tag-Bot)
 
