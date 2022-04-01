@@ -144,7 +144,7 @@ async def tag(ctx) -> None:
         # users learn how the command works, there will be a >50% chance
         # the message will contain a URL making this logic faster than
         # an if statement.
-        if hasattr(url_mo, "group"):
+        try:
             url = url_mo.group()
 
             try:
@@ -166,7 +166,7 @@ async def tag(ctx) -> None:
             except AttributeError as err:
                 logger.error(err)
                 await ctx.message.channel.send("An error occurred. Check the log for details.")
-        else:
+        except AttributeError as err:
             await ctx.message.channel.send("To tag a message, it must contain a link to a webpage.")
             logger.info(
                 f"{ctx.message.author} made a tag request to a message without a link to a webpage.")

@@ -3,3 +3,7 @@
 ## Hadolint config file ##
 ##########################
 ignored:
+
+override:
+  warning:
+  - DL3007 # Latest tag warning
