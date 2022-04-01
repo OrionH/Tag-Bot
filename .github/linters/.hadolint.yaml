@@ -6,4 +6,5 @@ ignored:
 
 override:
   info:
-  - DL3007 # Latest tag warning
+    - DL3007 # Latest tag warning
+failure-threshold: warning

@@ -166,7 +166,7 @@ async def tag(ctx) -> None:
             except AttributeError as err:
                 logger.error(err)
                 await ctx.message.channel.send("An error occurred. Check the log for details.")
-        except AttributeError as err:
+        except AttributeError:
             await ctx.message.channel.send("To tag a message, it must contain a link to a webpage.")
             logger.info(
                 f"{ctx.message.author} made a tag request to a message without a link to a webpage.")
