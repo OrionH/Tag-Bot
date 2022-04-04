@@ -2,8 +2,9 @@ FROM python:3.9-slim-bullseye AS build
 WORKDIR /usr/src/app
 COPY . .
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    g++=4:11.2.0-1 && \
+    apt-cache search g++ && \
+    apt-get install -y -V --no-install-recommends \
+    g++ && \
     pip install --no-cache-dir -r requirements.txt
 
 FROM gcr.io/distroless/python3:latest AS runtime
