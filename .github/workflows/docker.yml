@@ -47,5 +47,5 @@ jobs:
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/tagbot:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/tagbot:buildcache,mode=max
       -
-      name: Show image digest
-      run: echo ${{ steps.docker.build.outputs.digest }}
+        name: Show image digest
+        run: echo ${{ steps.docker.build.outputs.digest }}
