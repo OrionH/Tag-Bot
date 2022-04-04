@@ -44,5 +44,5 @@ jobs:
           file: ./dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/tagbot:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/tagbot:buildcache,mode=max
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
