@@ -2,7 +2,6 @@ FROM python:3.9-slim-bullseye AS build
 WORKDIR /usr/src/app
 COPY . .
 RUN apt-get update && \
-    apt-cache search g++ && \
     apt-get install -y -V --no-install-recommends \
     g++ && \
     pip install --no-cache-dir -r requirements.txt

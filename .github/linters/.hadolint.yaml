@@ -6,5 +6,6 @@ ignored:
 
 override:
   info:
+    - DL3006 # Always tag the version specifically
     - DL3007 # Latest tag warning
 failure-threshold: warning
