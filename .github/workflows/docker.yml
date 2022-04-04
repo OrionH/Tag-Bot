@@ -24,7 +24,7 @@ jobs:
           # generate Docker tags based on the following events/attributes
           tags: |
             type=ref, event=tag
-            type=semver,pattern={{raw}}
+            type=semver,pattern={{raw}},value=v1.3.0
           flavor: latest=true
       -
         name: Login to Docker Hub
