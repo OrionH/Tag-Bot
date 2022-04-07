@@ -3,6 +3,8 @@ name: Docker
 on:
   push:
     branches: [master, workflow-test]
+    tags:
+      - v*.*.*
   pull_request:
     branches: [master, workflow-test]
   workflow_dispatch:
