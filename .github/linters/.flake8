@@ -1,0 +1,6 @@
+[flake8]
+max-line-length = 120
+per-file-ignores = #project/__init__.py: F401
+ignore =
+    F401 #Import unused. Imports can be used by libraies without calling a function in the actual code.
+exclude = #headers.py

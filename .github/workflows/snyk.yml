@@ -1,7 +1,10 @@
+---
 name: Snyk Scan
 on:
   push:
-    branches: [ master ]
+    branches: [master, workflow-test]
+  pull_request:
+    branches: [master, workflow-test]
 jobs:
   security:
     runs-on: ubuntu-latest

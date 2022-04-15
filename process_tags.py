@@ -9,15 +9,14 @@ Notes:
 =====================================================================
 """
 
-from bs4 import BeautifulSoup
-import nltk
 # Used by BeautifulSoup to speed up parsing
 import cchardet
-
+import nltk
+from bs4 import BeautifulSoup
 
 # Download required packages for processing
-nltk.download('punkt')
-nltk.download('averaged_perceptron_tagger')
+nltk.download("punkt")
+nltk.download("averaged_perceptron_tagger")
 
 
 def scrape(response) -> list:
@@ -31,9 +30,9 @@ def scrape(response) -> list:
         list: Returns strings of the scraped title and text.
     """
     # Scrape webpage with lxml parser because it is often the fastest parser
-    scraped_content = BeautifulSoup(response.content, 'lxml')
+    scraped_content = BeautifulSoup(response.content, "lxml")
     # Get string of first head > title on page
-    title = scraped_content.find('head').find('title').get_text()
+    title = scraped_content.find("head").find("title").get_text()
     # Get text from entire webpage
     text = scraped_content.get_text()
 
@@ -88,7 +87,7 @@ def sort_title(words: list) -> list:
     Returns:
         list: Final tags (strings).
     """
-    order = ['NNPS', 'NNP', 'NNS', 'NN', 'JJS']
+    order = ["NNPS", "NNP", "NNS", "NN", "JJS"]
     # Sort list of words by the oder list.
     # This is to put more relevant tags (IMO) in the beginning of the list.
     sorted_tags = sorted(words, key=lambda i: order.index(i[1]))
@@ -110,14 +109,14 @@ def process_words(words: str) -> list:
         list: List of tuples (str,str). Words tagged with parts of speech.
     """
     # list of NLTK parts of speech for creating tags.
-    # NN noun, singular 'desk', NNS noun plural 'desks', NNP proper noun,
-    # singular 'Harrison', NNPS proper noun, plural 'dogs', JJS adjective, superlative 'biggest'
-    pos = ['NN', 'NNS', 'NNP', 'NNPS', 'JJS']
+    # NN noun, singular "desk", NNS noun plural "desks", NNP proper noun,
+    # singular "Harrison", NNPS proper noun, plural "dogs", JJS adjective, superlative "biggest"
+    pos = ["NN", "NNS", "NNP", "NNPS", "JJS"]
 
     # Tokenize text
     tok_words = nltk.word_tokenize(words)
     # convert words to lower case and remove punctuation and numbers.
-    # Also remove words longer than 21 characters 'Incomprehensibilities'
+    # Also remove words longer than 21 characters "Incomprehensibilities"
     word_list = [word.lower()
                  for word in tok_words if word.isalpha() and len(word) < 21]
     # Tag words in list with their parts of speech
@@ -129,11 +128,14 @@ def process_words(words: str) -> list:
     return reduced_tagged_list
 
 
-def create_tags() -> str:
+def create_tags(response) -> str:
     """Function to process a web page into keywords from that page. Keyword
     tags are sorted by importance. Up to three tags from the title of the page
     in propper noun, noun, adjective order. Up to seven tags from the entire
     page in most frequent to least frequent order.
+
+    Args:
+        response: Response object from getting a webpage.
 
     Returns:
         str: Formatted string of keywords or tags
@@ -156,6 +158,6 @@ def create_tags() -> str:
     # Capitalize first letter for looks
     final_tag_list = [word.capitalize() for word in final_tag_list]
     # Convert to string
-    final_tags = ', '.join(final_tag_list)
+    final_tags = ", ".join(final_tag_list)
 
     return final_tags

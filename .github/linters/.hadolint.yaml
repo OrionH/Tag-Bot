@@ -1,0 +1,12 @@
+---
+##########################
+## Hadolint config file ##
+##########################
+ignored:
+
+# override:
+#   info:
+#     - DL3006 # Always tag the version specifically
+#     - DL3007 # Latest tag warning
+#     - DL3008 # Pin apt get versions
+failure-threshold: error
