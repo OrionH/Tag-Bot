@@ -59,8 +59,8 @@ jobs:
           context: .
           file: ./dockerfile
           push: true
-          tags:
-              - orionhumphrey/tagbot:${{ steps.tag.outputs.version_tag }}
-              - orionhumphrey/tagbot:latest
+          tags: |
+              orionhumphrey/tagbot:${{ steps.tag.outputs.version_tag }}
+              orionhumphrey/tagbot:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
