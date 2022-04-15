@@ -10,9 +10,9 @@ updates:
       interval: "monthly"
     target-branch: "workflow-test"
     open-pull-requests-limit: 5
-    labels: |
-        "pip"
-        "dependencies"
+    labels:
+        - "pip"
+        - "dependencies"
     ignore:
       - dependency-name: "urllib3"
 
@@ -23,6 +23,6 @@ updates:
       interval: "monthly"
     target-branch: "workflow-test"
     open-pull-requests-limit: 5
-    labels: |
-        "actions"
-        "dependencies"
+    labels:
+        - "actions"
+        - "dependencies"
