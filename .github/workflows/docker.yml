@@ -26,7 +26,7 @@ jobs:
       -
         name: Tag
         id: tag
-        uses: paulhatch/semantic-version@v5.0.0-alpha
+        uses: paulhatch/semantic-version@v5.0.0-alpha2
         with:
           tag_prefix: "v"
           # A string which, if present in a git commit, indicates that a change represents a
