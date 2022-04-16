@@ -3,9 +3,9 @@ name: Lint
 
 on:
   push:
-    branches: [master, workflow-test]
+    branches: [master, tests]
   pull_request:
-    branches: [master, workflow-test]
+    branches: [master, tests]
 
 jobs:
   build:
