@@ -8,20 +8,20 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    target-branch: "workflow-test"
+    target-branch: "master"
     open-pull-requests-limit: 5
     labels:
         - "pip"
         - "dependencies"
     ignore:
-      - dependency-name: "urllib3"
+      - dependency-name: "aiohttp"
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
-    target-branch: "workflow-test"
+    target-branch: "master"
     open-pull-requests-limit: 5
     labels:
         - "actions"

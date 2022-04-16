@@ -1,16 +1,23 @@
 ---
 name: Docker
 on:
-  push:
-    branches: [master, workflow-test]
-  pull_request:
-    branches: [master, workflow-test]
+# workflow_run only triggers on the default branch
+  workflow_run:
+    workflows: [Tests, Synk Scan]
+    branches: [master, dev]
+    types: [completed]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      -
+        name: Wait for other checks to succeed
+        uses: ahmadnassri/action-workflow-run-wait@v1
+        with:
+          timeout: 60000
+          delay: 10000
       -
         name: Checkout
         uses: actions/checkout@v3

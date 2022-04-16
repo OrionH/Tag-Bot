@@ -3,10 +3,11 @@ name: Tests
 on:
   push:
     branches:
-      [master, workflow-test]
+      [master, dev]
   pull_request:
     branches:
-      [master, workflow-test]
+      [master, dev]
+  workflow_dispatch:
 jobs:
   test:
     runs-on: ubuntu-latest
