@@ -1,13 +1,9 @@
 ---
 name: Docker
-# on:
-  # push:
-  #   branches: [master, workflow-test]
-  # pull_request:
-  #   branches: [master, workflow-test]
 on:
+# workflow_run only triggers on the default branch
   workflow_run:
-    workflows: [test (3.9), security]
+    workflows: [Tests, Synk Scan]
     branches: [master, tests]
     types: [completed]
   workflow_dispatch:
