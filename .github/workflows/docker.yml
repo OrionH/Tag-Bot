@@ -7,9 +7,10 @@ name: Docker
   #   branches: [master, workflow-test]
 on:
   workflow_run:
-    workflows: [Tests, Snyk Scan]
+    workflows: [test (3.9), security]
     branches: [master, tests]
     types: [completed]
+  workflow_dispatch:
 
 jobs:
   build:

@@ -5,6 +5,7 @@ on:
     branches: [master, tests]
   pull_request:
     branches: [master, tests]
+  workflow_dispatch:
 jobs:
   sonarcloud:
     runs-on: ubuntu-latest
