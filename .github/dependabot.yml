@@ -14,7 +14,7 @@ updates:
         - "pip"
         - "dependencies"
     ignore:
-      - dependency-name: "urllib3"
+      - dependency-name: "aiohttp"
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
