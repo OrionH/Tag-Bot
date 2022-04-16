@@ -4,7 +4,7 @@ on:
 # workflow_run only triggers on the default branch
   workflow_run:
     workflows: [Tests, Synk Scan]
-    branches: [master, tests, dev]
+    branches: [master, dev]
     types: [completed]
   workflow_dispatch:
 
