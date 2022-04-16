@@ -7,9 +7,9 @@ name: Docker
   #   branches: [master, workflow-test]
 on:
   workflow_run:
-    workflows: ['Tests', 'Snyk Scan', 'CodeQL']
-    types:
-      - completed
+    workflows: [Tests, Snyk Scan]
+    branches: [master, tests]
+    types: [completed]
 
 jobs:
   build:
@@ -17,12 +17,10 @@ jobs:
     steps:
       -
         name: Wait for other checks to succeed
-        uses: lewagon/wait-on-check-action@v1.0.0
+        uses: ahmadnassri/action-workflow-run-wait@v1
         with:
-          ref: ${{ github.ref }}
-          check-name: ['Tests', 'Snyk Scan', 'CodeQL']
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10
+          timeout: 60000
+          delay: 10000
       -
         name: Checkout
         uses: actions/checkout@v3
