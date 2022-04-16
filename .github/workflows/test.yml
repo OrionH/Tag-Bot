@@ -3,10 +3,10 @@ name: Tests
 on:
   push:
     branches:
-      [master, tests]
+      [master, tests, dev]
   pull_request:
     branches:
-      [master, tests]
+      [master, tests, dev]
   workflow_dispatch:
 jobs:
   test:

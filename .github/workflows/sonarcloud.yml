@@ -2,9 +2,9 @@
 name: Sonarcloud
 on:
   push:
-    branches: [master, tests]
+    branches: [master, tests, dev]
   pull_request:
-    branches: [master, tests]
+    branches: [master, tests, dev]
   workflow_dispatch:
 jobs:
   sonarcloud:
