@@ -8,6 +8,10 @@ on:
     types: [completed]
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -69,5 +73,6 @@ jobs:
           tags: |
               orionhumphrey/tagbot:${{ steps.tag.outputs.version_tag }}
               orionhumphrey/tagbot:latest
+              orionhumphrey/tagbot:v1.3.1
           cache-from: type=gha
           cache-to: type=gha,mode=max
