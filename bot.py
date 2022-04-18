@@ -18,12 +18,12 @@ import sys
 
 import discord
 import requests
-import urllib3.exceptions.HTTPError
 from discord.errors import LoginFailure
 from discord.ext import commands
 from dotenv import load_dotenv
 from headers import rotate_header
 from process_tags import create_tags
+from urllib3.exceptions import HTTPError
 
 # Load .env files in folder if they exist
 load_dotenv()
