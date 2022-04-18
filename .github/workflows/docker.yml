@@ -69,5 +69,6 @@ jobs:
           tags: |
               orionhumphrey/tagbot:${{ steps.tag.outputs.version_tag }}
               orionhumphrey/tagbot:latest
+              orionhumphrey/tagbot:v1.3.1
           cache-from: type=gha
           cache-to: type=gha,mode=max
