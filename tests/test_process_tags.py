@@ -14,11 +14,11 @@ import sys
 import requests
 from requests_file import FileAdapter
 from tagbot.process_tags import (
-    scrape,
     count_occurrences,
-    sort_title,
-    process_words,
     create_tags,
+    process_words,
+    scrape,
+    sort_title,
 )
 
 # Uncomment for local testing. Needs to go above tagbot imports.
@@ -191,7 +191,8 @@ def test_create_tags():
     # Duplicate tags in title and body
     text2 = [
         "This is a title",
-        "This is a body of text. It has duplicate words like title title tile and text text text to check for duplicate removal and adding one tag from the body.",
+        "This is a body of text. It has duplicate words like title title tile and text text text \
+        to check for duplicate removal and adding one tag from the body.",
     ]
     # Text only in body
     text3 = ["", "This test only has a body. Test test test."]

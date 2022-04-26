@@ -152,7 +152,7 @@ async def tag(ctx) -> None:
                 response = await get_webpage(ctx, url)
                 print(response.text)
             # Exception used by the requests module but inherits from BaseException
-            except urllib3.exceptions.HTTPError:
+            except HTTPError:
                 # Skip rest of function if error in retrieving page
                 return
 

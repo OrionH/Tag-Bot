@@ -119,17 +119,21 @@ def process_words(words: str) -> list:
     tagged_word_list = nltk.pos_tag(tok_list)
     # Remove every word that does not match the parts of speech in the parts of speech list
     reduced_tagged_list = [
-        word for word in tagged_word_list if word[1] in parts_of_speech]
+        word for word in tagged_word_list if word[1] in parts_of_speech
+    ]
     # Capitalization affects the tagging process so this comes last.
     # convert words to lower case and remove punctuation and numbers.
     # Also remove words longer than 21 characters "Incomprehensibilities"
-    final_tagged_list = [(word[0].lower(), word[1])
-                 for word in reduced_tagged_list if word[0].isalpha() and len(word[0]) < 21]
+    final_tagged_list = [
+        (word[0].lower(), word[1])
+        for word in reduced_tagged_list
+        if word[0].isalpha() and len(word[0]) < 21
+    ]
 
     return final_tagged_list
 
 
-def create_tags(text:list) -> str:
+def create_tags(text: list) -> str:
     """Function to process a web page into keywords from that page. Keyword
     tags are sorted by importance. Up to three tags from the title of the page
     in propper noun, noun, adjective order. Up to seven tags from the entire
