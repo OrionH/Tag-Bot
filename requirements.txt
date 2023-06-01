@@ -1,6 +1,6 @@
 beautifulsoup4==4.12.2
 cchardet==2.1.7
-discord.py==2.2.2
+discord.py==2.2.3
 lxml==4.9.2
 nltk==3.8.1
 python-dotenv==1.0.0
