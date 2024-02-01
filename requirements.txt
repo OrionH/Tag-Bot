@@ -1,7 +1,7 @@
 beautifulsoup4==4.12.2
 cchardet==2.1.7
 discord.py==2.3.2
-lxml==5.0.0
+lxml==5.1.0
 nltk==3.8.1
 python-dotenv==1.0.0
 regex==2023.12.25
