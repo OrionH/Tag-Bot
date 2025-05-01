@@ -1,4 +1,4 @@
-beautifulsoup4==4.13.3
+beautifulsoup4==4.13.4
 cchardet==2.1.7
 discord.py==2.5.2
 lxml==5.3.1
