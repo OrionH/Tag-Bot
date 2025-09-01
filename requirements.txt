@@ -7,6 +7,6 @@ python-dotenv==1.1.1
 regex==2024.11.6
 pytest==8.4.1
 urllib3==2.5.0
-requests==2.32.4
+requests==2.32.5
 python-dotenv==1.1.1
 zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
