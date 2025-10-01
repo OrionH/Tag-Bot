@@ -5,7 +5,7 @@ discord.py==2.6.3
 nltk==3.9.1
 python-dotenv==1.1.1
 regex==2025.8.29
-pytest==8.4.1
+pytest==8.4.2
 urllib3==2.5.0
 requests==2.32.5
 python-dotenv==1.1.1
