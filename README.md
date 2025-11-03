@@ -2,7 +2,7 @@
 
 This discord bot tags messages that contain links with keywords on the web page to increase searchability of old topics.
 
-[![Super-Linter](https://github.com/OrionH/Tag-Bot/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![Super-Linter](https://github.com/OrionH/Tag-Bot/actions/workflows/Lint/badge.svg)](https://github.com/marketplace/actions/super-linter)
 [![Known Vulnerabilities](https://github.com/OrionH/Tag-Bot/workflows/Snyk%20Scan/badge.svg)](https://snyk.io/)
 ![Tests](https://github.com/OrionH/Tag-Bot/workflows/Tests/badge.svg)
 [![CodeQL](https://github.com/OrionH/Tag-Bot/workflows/CodeQL/badge.svg)](https://codeql.github.com/)
@@ -118,4 +118,5 @@ docker run --name Tagbot -d -v tagbot_logs:/usr/src/app/logs -e BOT_API_TOKEN=Yo
 ```
 
 Using a bind mount will allow you to store the logs on the host system folder rather than a docker volume. The syntax changes to **-v YourHostDirectory:/usr/src/app/logs**. The folder structure will change based on the host OS. Note that the folder on the host system must be created in advance.
+
 
