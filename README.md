@@ -6,7 +6,7 @@ This discord bot tags messages that contain links with keywords on the web page 
 [![Known Vulnerabilities](https://github.com/OrionH/Tag-Bot/workflows/Snyk%20Scan/badge.svg)](https://snyk.io/)
 ![Tests](https://github.com/OrionH/Tag-Bot/workflows/Tests/badge.svg)
 [![CodeQL](https://github.com/OrionH/Tag-Bot/workflows/CodeQL/badge.svg)](https://codeql.github.com/)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OrionH_Tag-Bot&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=OrionH_Tag-Bot)
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=OrionH_Tag-Bot)](https://sonarcloud.io/summary/new_code?id=OrionH_Tag-Bot)
 
 ## Manually adding a Discord bot to your server
 
@@ -118,3 +118,4 @@ docker run --name Tagbot -d -v tagbot_logs:/usr/src/app/logs -e BOT_API_TOKEN=Yo
 ```
 
 Using a bind mount will allow you to store the logs on the host system folder rather than a docker volume. The syntax changes to **-v YourHostDirectory:/usr/src/app/logs**. The folder structure will change based on the host OS. Note that the folder on the host system must be created in advance.
+
