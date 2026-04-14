@@ -1,3 +1,5 @@
+## This repo is now archived due to Discords invasive data gathering practices.
+
 # Tag Bot
 
 This discord bot tags messages that contain links with keywords on the web page to increase searchability of old topics.
